@@ -17,6 +17,11 @@ Ideális esetben a rendszer tartalmaz minden problémára megoldást, és segít
 | Főoldal                     |                                           |
 | Design                      | css/javascript                            |
 
+## Felhasználói modell
+
+<img width="743" height="785" alt="image" src="https://github.com/user-attachments/assets/aa98d8b1-93d7-4f1c-a511-8c6f3df92544" />
+
+
 
 
 ## 3.Rendszer architektúra
