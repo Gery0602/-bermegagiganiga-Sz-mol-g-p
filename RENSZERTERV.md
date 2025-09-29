@@ -61,11 +61,33 @@ Példa:
 5 + 7 = 12
 12 × 3 = 36
 
-Felhasználói felület vázlat:
-| 123 + 5 | <-- Nagy kijelző
-| 5 + 7 = 12 | <-- Előzmények (másodlagos kijelző)
-| 7 | 8 | 9 | ÷ |
-| 4 | 5 | 6 | × |
-| 1 | 2 | 3 | − |
-| 0 | . | = | + |
-| C | AC | % | √ x² |
+## 5. Adatkezelés 
+A számológép egyszerű adatkezelést valósít meg, főként a képletek tárolására.
+
+Tárolás módja
+
+A böngésző LocalStorage funkcióját használjuka  a felhasználó kezelésre ..
+
+A felhasználó elérheti az adatbázisban tárolt képleteket.
+
+Törlés
+
+A felhasználó AC gombbal törölheti a teljes előzményt.
+
+C csak az aktuális számot törli.
+
+Tárolt formátum
+
+Minden művelet szöveges formában kerül tárolásra:
+Példa: "12 + 8 = 20"
+Adatkezelési folyamat:
+ [Felhasználói bevitel] 
+          |
+          v
+   [Számítási modul] 
+          |
+          v
+   [Eredmény kijelző] ---> [Előzmények lista]
+                               |
+                               v
+                        [LocalStorage böngészőben]
