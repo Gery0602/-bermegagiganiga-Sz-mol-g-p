@@ -31,9 +31,8 @@ Reszponzivitás: A webalkalmazás minden eszközön (desktop, tablet, mobil) jó
 # 4. Felhasználói szintek
 |           |                                                  |
 | --- | --- |
-| 'guest:' | -a számológép használata képletek nélkül |
-| 'admin:' | -képletek hozzáadása és törlése az adtbázisól |
-| 'user:' | -képletek használata az adatbázisból |
-| 'moderator:' | -képletek hozzáadása és törlése az adtbázisól |
-|  | -felhasználók kezelése |
+| `guest` | -a számológép használata képletek nélkül |
+| `admin` | -képletek hozzáadása és törlése az adtbázisól |
+| `user` | -képletek használata az adatbázisból |
+| `moderator` | -képletek hozzáadása és törlése az adtbázisól <br> -felhasználók kezelése |
 
