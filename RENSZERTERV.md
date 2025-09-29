@@ -28,6 +28,8 @@ A második réteg a logikai réteg (számítások). Ez a rész kezeli a felhaszn
 A harmadik réteg az adatkezelési réteg, amely az előzmények kezelésére szolgál. Ez a böngésző LocalStorage funkcióját használja, így a műveletek és eredmények ideiglenesen megőrizhetők.
 Ez a rétegelt felépítés biztosítja, hogy a felhasználói felület független legyen a számítási logikától, és az adatkezelés külön kezelhető legyen. A struktúra előnye, hogy a rendszer egyszerűen karbantartható, és a jövőben könnyen bővíthető további funkciókkal.
 
+<img width="969" height="964" alt="image" src="https://github.com/user-attachments/assets/8880d005-6b4f-49d2-9b0d-e5921f292be9" />
+
 ## 4. Felhasználói felület
 A számológép felülete letisztult és könnyen használható, a felhasználóbarát működést tartja szem előtt.
 
