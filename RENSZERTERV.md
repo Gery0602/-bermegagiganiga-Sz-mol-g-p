@@ -31,13 +31,13 @@ Ez a rétegelt felépítés biztosítja, hogy a felhasználói felület függetl
 ## 4. Felhasználói felület
 A számológép felülete letisztult és könnyen használható, a felhasználóbarát működést tartja szem előtt.
 
-Számgombok (0–9)
+Számgombok: (0–9)
 A fő számbevitel a gombok megnyomásával történik. Ezeket rácsszerűen helyezzük el (3×3 + 0).
 
-Műveleti gombok (+, −, ×, ÷)
+Műveleti gombok: (+, −, ×, ÷)
 Külön oszlopban kapnak helyet, hogy jól elkülönüljenek a számoktól.
 
-Speciális gombok
+Speciális gombok:
 
 % → százalékszámításhoz
 
@@ -51,7 +51,7 @@ C → az aktuális bevitt szám törlése
 
 AC → minden adat törlése (kijelző + előzmények)
 
-Nagy kijelzőmező
+Nagy kijelzőmező:
 A legfelső részen található, ide kerül az aktuálisan bevitt szám és a művelet jele.
 Példa: 23 + vagy 12 ÷ 3 = 4.
 
@@ -64,20 +64,15 @@ Példa:
 ## 5. Adatkezelés 
 A számológép egyszerű adatkezelést valósít meg, főként a képletek tárolására.
 
-Tárolás módja
-
-A böngésző LocalStorage funkcióját használjuka  a felhasználó kezelésre ..
-
+Tárolás módja:
+A böngésző LocalStorage funkcióját használjuka  a felhasználó kezelésre .
 A felhasználó elérheti az adatbázisban tárolt képleteket.
 
-Törlés
-
+Törlés:
 A felhasználó AC gombbal törölheti a teljes előzményt.
-
 C csak az aktuális számot törli.
 
-Tárolt formátum
-
+Tárolt formátum:
 Minden művelet szöveges formában kerül tárolásra:
 Példa: "12 + 8 = 20"
 
