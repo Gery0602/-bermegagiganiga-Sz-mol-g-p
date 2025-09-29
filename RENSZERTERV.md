@@ -80,5 +80,5 @@ Tárolt formátum
 
 Minden művelet szöveges formában kerül tárolásra:
 Példa: "12 + 8 = 20"
-Adatkezelési folyamat:
+##Adatkezelési folyamat:
  [Felhasználói bevitel] --->[Számítási modul] ---> [Eredmény kijelző]---> [Előzmények lista]---> [LocalStorage böngészőben]
