@@ -148,7 +148,7 @@
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }
         })
-            .then(location.href = 'login.php');
+            .then(location.href = 'index.html');
     }
 
     function addUserInt() {
