@@ -38,8 +38,14 @@ Reszponzivitás: A webalkalmazás minden eszközön (desktop, tablet, mobil) jó
 
 
 # 5. Rendszer működése
-## 5.1 Alap oldal
+## 5.1 Alap oldal (guest)
 Elehetőség az alap számológép eléréséhez és a bejelentkezésre/regisztrációra
 
-##5.2
-Az alap sz
+## 5.2 Regisztrált felhasználói oldal (user)
+Az alap számológép használata mellett elérhetővé válnak a képletek
+
+## 5.3 Moderátori oldal (mod)
+Egy külön részen szerkesztheti a képleteket
+
+## 5.4 Adminisztrátori oldal (admin)
+A képltek szerkesztése mellett hozzáadhat és el is távolíthat belőlük elemeket, továbbá szerkesztheti a felhasználói táblát is
