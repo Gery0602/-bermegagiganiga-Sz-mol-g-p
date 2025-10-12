@@ -20,23 +20,11 @@ CREATE TABLE users (
 CREATE TABLE formulas (
     id INT AUTO_INCREMENT PRIMARY KEY,
     formula_name VARCHAR(100) NOT NULL,
-    formula_expression TEXT NOT NULL,
-    created_by INT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (created_by) REFERENCES users(id)
+   
 );
 
 
-CREATE TABLE calculations (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    formula_id INT,
-    input_values TEXT,
-    result_value DOUBLE,
-    calculated_by INT,
-    calculated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (formula_id) REFERENCES formulas(id),
-    FOREIGN KEY (calculated_by) REFERENCES users(id)
-);
+
 
 
 INSERT INTO roles (role_name) VALUES ('admin'), ('moderator'), ('user'), ('guest');
