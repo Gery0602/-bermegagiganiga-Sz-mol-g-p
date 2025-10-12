@@ -40,15 +40,6 @@
                 <input type="password" class="form-control" id="password" placeholder="Jelszó">
             </div>
 
-<!--A faszom kimvan az egészel és még csak most keztem -Kotor-->
-            <!--<div class="form-group">
-                <select name="roles" id="roles">
-                    <option value="0">Admin</option>
-                    <option value="1">Moderator</option>
-                    <option value="2">User</option>
-                </select>
-            </div>
--->
             <div class="form-btn">
                 <input type="submit" class="btn btn-primary" value="Regisztráció">
                 <p style="display: inline-block;">vagy <a href="login.php">bejelentkezés.</a></p>
