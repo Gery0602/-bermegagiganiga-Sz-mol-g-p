@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         case "list":
             
-            $stmt = $kapcsolat->query("SELECT id, name, email FROM users");
+            $stmt = $kapcsolat->query("SELECT id, username, email FROM users");
             echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
             exit();
 
