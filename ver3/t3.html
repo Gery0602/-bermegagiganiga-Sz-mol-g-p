@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tudományos Számológép</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 24px;
+        }
+
+        .user-info {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        .calculator {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .display {
+            background: #1f2937;
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            min-height: 100px;
+        }
+
+        .display-memory {
+            color: #9ca3af;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .display-main {
+            font-size: 36px;
+            font-family: monospace;
+            text-align: right;
+            word-break: break-all;
+        }
+
+        .display-mode {
+            color: #9ca3af;
+            font-size: 12px;
+            text-align: right;
+            margin-top: 10px;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .buttons-main {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .calc-btn {
+            padding: 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .calc-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .calc-btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-number {
+            background: #f3f4f6;
+            color: #1f2937;
+        }
+
+        .btn-number:hover {
+            background: #e5e7eb;
+        }
+
+        .btn-operator {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-operator:hover {
+            background: #5568d3;
+        }
+
+        .btn-function {
+            background: #c7d2fe;
+            color: #4338ca;
+        }
+
+        .btn-function:hover {
+            background: #a5b4fc;
+        }
+
+        .btn-special {
+            background: #ddd6fe;
+            color: #6d28d9;
+        }
+
+        .btn-special:hover {
+            background: #c4b5fd;
+        }
+
+        .btn-clear {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-clear:hover {
+            background: #dc2626;
+        }
+
+        .btn-equals {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-equals:hover {
+            background: #059669;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .panel {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .panel h2 {
+            color: #1f2937;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .formula-item,
+        .history-item {
+            background: #f3f4f6;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .formula-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .formula-name {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .formula-code {
+            font-family: monospace;
+            color: #667eea;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .formula-desc {
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .btn-small {
+            padding: 5px 15px;
+            font-size: 12px;
+        }
+
+        .btn-icon {
+            background: none;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .new-formula-form {
+            background: #d1fae5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .new-formula-form h3 {
+            color: #065f46;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .new-formula-form input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 5px;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .history-time {
+            font-size: 11px;
+            color: #6b7280;
+            margin-bottom: 5px;
+        }
+
+        .history-expr {
+            font-family: monospace;
+            color: #1f2937;
+            margin-bottom: 3px;
+        }
+
+        .history-result {
+            font-family: monospace;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .scroll-panel {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-header h1 {
+            color: #667eea;
+            font-size: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #374151;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .login-info {
+            background: #f3f4f6;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .login-info p {
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .buttons,
+            .buttons-main {
+                gap: 5px;
+            }
+
+            .calc-btn {
+                padding: 15px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-container">
+        <div class="login-header">
+            <h1>Bejelentkezés</h1>
+        </div>
+        <div class="form-group">
+            <label>Felhasználónév</label>
+            <input type="text" id="loginUsername" placeholder="admin, mod vagy user">
+        </div>
+        <div class="form-group">
+            <label>Jelszó</label>
+            <input type="password" id="loginPassword" placeholder="Jelszó">
+        </div>
+        <button class="btn btn-primary" style="width: 100%; padding: 12px;" onclick="login()">Bejelentkezés</button>
+
+        <div class="login-info">
+            <p style="font-weight: 600; margin-bottom: 8px;">Teszt felhasználók:</p>
+            <p>Admin: admin/admin123</p>
+            <p>Moderátor: mod/mod123</p>
+            <p>Felhasználó: user/user123</p>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="mainApp" class="container hidden">
+        <div class="header">
+            <div>
+                <h1>Tudományos Számológép</h1>
+                <div class="user-info" id="userInfo"></div>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-success" onclick="toggleFormulas()">Képletek</button>
+                <button class="btn btn-danger" onclick="logout()">Kijelentkezés</button>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <!-- Calculator -->
+            <div class="calculator">
+                <div class="display">
+                    <div class="display-memory" id="memory"></div>
+                    <div class="display-main" id="display">0</div>
+                </div>
+
+                <!-- Scientific Buttons -->
+                <div class="buttons">
+                    <button class="calc-btn btn-function" onclick="applyFunction('sin')">sin</button>
+                    <button class="calc-btn btn-function" onclick="applyFunction('cos')">cos</button>
+                    <button class="calc-btn btn-function" onclick="applyFunction('tan')">tan</button>
+                    <button class="calc-btn btn-function" onclick="applyFunction('log')">log</button>
+                    <button class="calc-btn btn-special" onclick="appendDisplay('PI')">π</button>
+
+                    <button class="calc-btn btn-special" onclick="appendDisplay('^2')">x²</button>
+                    <button class="calc-btn btn-special" onclick="appendDisplay('^')">xⁿ</button>
+                    <button class="calc-btn btn-function" onclick="applyFunction('sqrt')">√</button>
+                    <button class="calc-btn btn-special" onclick="appendDisplay('!')">n!</button>
+                    <button class="calc-btn btn-number" onclick="appendDisplay('.')">.</button>
+                </div>
+
+                <!-- Main Buttons -->
+                <div class="buttons-main">
+                    <button class="calc-btn btn-clear" onclick="clearDisplay()">C</button>
+                    <button class="calc-btn btn-clear" onclick="deleteLast()">←</button>
+                    <button class="calc-btn btn-special" onclick="appendDisplay('%')">%</button>
+                    <button class="calc-btn btn-operator" onclick="appendDisplay('/')">÷</button>
+
+                    <button class="calc-btn btn-number" onclick="appendDisplay('7')">7</button>
+                    <button class="calc-btn btn-number" onclick="appendDisplay('8')">8</button>
+                    <button class="calc-btn btn-number" onclick="appendDisplay('9')">9</button>
+                    <button class="calc-btn btn-operator" onclick="appendDisplay('*')">×</button>
+
+                    <button class="calc-btn btn-number" onclick="appendDisplay('4')">4</button>
+                    <button class="calc-btn btn-number" onclick="appendDisplay('5')">5</button>
+                    <button class="calc-btn btn-number" onclick="appendDisplay('6')">6</button>
+                    <button class="calc-btn btn-operator" onclick="appendDisplay('-')">−</button>
+
+                    <button class="calc-btn btn-number" onclick="appendDisplay('1')">1</button>
+                    <button class="calc-btn btn-number" onclick="appendDisplay('2')">2</button>
+                    <button class="calc-btn btn-number" onclick="appendDisplay('3')">3</button>
+                    <button class="calc-btn btn-operator" onclick="appendDisplay('+')">+</button>
+
+                    <button class="calc-btn btn-special" onclick="appendDisplay('(')">(</button>
+                    <button class="calc-btn btn-number" onclick="appendDisplay('0')">0</button>
+                    <button class="calc-btn btn-special" onclick="appendDisplay(')')">)</button>
+                    <button class="calc-btn btn-equals" onclick="calculate()">=</button>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Formulas Panel -->
+                <div id="formulasPanel" class="panel hidden">
+                    <h2>Képletek</h2>
+
+                    <div id="newFormulaForm" class="new-formula-form hidden">
+                        <h3>Új képlet hozzáadása</h3>
+                        <input type="text" id="formulaName" placeholder="Képlet neve">
+                        <input type="text" id="formulaCode" placeholder="Képlet (pl: PI*r^2)">
+                        <input type="text" id="formulaDesc" placeholder="Leírás (opcionális)">
+                        <button class="btn btn-success" style="width: 100%;" onclick="saveFormula()">Mentés</button>
+                    </div>
+
+                    <div id="formulasList" class="scroll-panel"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global state
+        let currentUser = null;
+        let display = '0';
+        let memory = '';
+        let history = [];
+        let formulas = [];
+        let isRad = false;
+
+        const users = {
+            admin: { password: 'admin123', role: 'admin', name: 'Adminisztrátor' },
+            mod: { password: 'mod123', role: 'moderator', name: 'Moderátor' },
+            user: { password: 'user123', role: 'user', name: 'Felhasználó' }
+        };
+
+        // Initialize default formulas
+        function initFormulas() {
+            formulas = [
+                { name: 'Kör kerülete', formula: '2*PI*r', description: 'r = sugár' },
+                { name: 'Kör területe', formula: 'PI*r^2', description: 'r = sugár' },
+                { name: 'Négyzet kerülete', formula: '4*a', description: 'a = oldal' },
+                { name: 'Négyzet területe', formula: 'a^2', description: 'a = oldal' },
+                { name: 'Téglalap területe', formula: 'a*b', description: 'a,b = oldalak' },
+                { name: 'Háromszög területe', formula: '(a*m)/2', description: 'a = alap, m = magasság' },
+                { name: 'Pitagorasz tétel', formula: 'sqrt(a^2+b^2)', description: 'a,b = befogók' },
+                { name: 'Másodfokú egyenlet', formula: '(-b+sqrt(b^2-4*a*c))/(2*a)', description: 'ax²+bx+c=0' },
+                { name: 'Sebességszámítás', formula: 's/t', description: 's = út, t = idő' },
+                { name: 'Átlagsebesség', formula: '(v1+v2)/2', description: 'v1,v2 = sebességek' }
+            ];
+        }
+
+        // Login
+        function login() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+
+            const jsonData = JSON.stringify({
+                username: username,
+                password: password,
+                muvelet: "l"
+            });
+            fetch("users.php", {
+                method: "POST",
+                header: { "Content-Type": "application/json" },
+                body: jsonData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    /*if (data.succes) {
+                        currentUser = { username, role: user.role, name: user.name };
+                        document.getElementById('loginScreen').classList.add('hidden');
+                        document.getElementById('mainApp').classList.remove('hidden');
+                        document.getElementById('userInfo').textContent = `${user.name} (${user.role})`;
+
+                        initFormulas();
+                        updateDisplay();
+                        renderFormulas();
+                    
+                        if (currentUser.role === 'admin' || currentUser.role === 'moderator') {
+                            document.getElementById('newFormulaForm').classList.remove('hidden');
+                        }
+                    } else {
+                        alert('Hibás felhasználónév vagy jelszó!');
+                    }*/
+                })
+        };
+
+        /*
+        const user = users[username];
+        if (user && user.password === password) {
+            currentUser = { username, role: user.role, name: user.name };
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.remove('hidden');
+            document.getElementById('userInfo').textContent = `${user.name} (${user.role})`;
+            
+            initFormulas();
+            updateDisplay();
+            renderFormulas();
+            
+            if (currentUser.role === 'admin' || currentUser.role === 'moderator') {
+                document.getElementById('newFormulaForm').classList.remove('hidden');
+            }
+        } else {
+            alert('Hibás felhasználónév vagy jelszó!');
+        }
+            */
+
+
+        // Logout
+        function logout() {
+            currentUser = null;
+            display = '0';
+            memory = '';
+            history = [];
+            document.getElementById('mainApp').classList.add('hidden');
+            document.getElementById('loginScreen').classList.remove('hidden');
+            document.getElementById('loginUsername').value = '';
+            document.getElementById('loginPassword').value = '';
+        }
+
+        // Display functions
+        function updateDisplay() {
+            document.getElementById('display').textContent = display;
+            document.getElementById('memory').textContent = memory;
+        }
+
+        function appendDisplay(value) {
+            if (display === '0') {
+                display = value;
+            } else {
+                display += value;
+            }
+            updateDisplay();
+        }
+
+        function clearDisplay() {
+            display = '0';
+            memory = '';
+            updateDisplay();
+        }
+
+        function deleteLast() {
+            display = display.length > 1 ? display.slice(0, -1) : '0';
+            updateDisplay();
+        }
+
+        // Mathematical functions
+        function applyFunction(func) {
+            switch (func) {
+                case 'sin':
+                case 'cos':
+                case 'tan':
+                case 'log':
+                case 'sqrt':
+                    appendDisplay(func + '(');
+                    break;
+            }
+        }
+
+        function factorial(n) {
+            if (n < 0) return NaN;
+            if (n === 0 || n === 1) return 1;
+            let result = 1;
+            for (let i = 2; i <= n; i++) {
+                result *= i;
+            }
+            return result;
+        }
+
+        function evaluateExpression(expr) {
+            try {
+                let expression = expr
+                    .replace(/π|PI/g, Math.PI)
+                    .replace(/sin\(/g, '(Math.sin(Math.PI/180*')
+                    .replace(/cos\(/g, '(Math.cos(Math.PI/180*')
+                    .replace(/tan\(/g, '(Math.tan(Math.PI/180*')
+                    .replace(/log\(/g, 'Math.log10(')
+                    .replace(/sqrt\(/g, 'Math.sqrt(')
+                    .replace(/(\d+)!/g, function (match, n) { return factorial(parseInt(n)); })
+                    .replace(/\^/g, '**');
+
+                const trigCount = (expression.match(/Math\.(sin|cos|tan)/g) || []).length;
+                expression = expression + ')'.repeat(trigCount);
+
+                const result = eval(expression);
+                return result;
+            } catch (error) {
+                return 'Hiba';
+            }
+        }
+
+        function calculate() {
+            const result = evaluateExpression(display);
+            history.push({
+                expression: display,
+                result: result,
+                time: new Date().toLocaleString('hu-HU')
+            });
+            display = result.toString();
+            updateDisplay();
+            renderHistory();
+        }
+
+        // Formula functions
+        function saveFormula() {
+            const name = document.getElementById('formulaName').value;
+            const formula = document.getElementById('formulaCode').value;
+            const description = document.getElementById('formulaDesc').value;
+
+            if (name && formula) {
+                formulas.push({ name, formula, description });
+                document.getElementById('formulaName').value = '';
+                document.getElementById('formulaCode').value = '';
+                document.getElementById('formulaDesc').value = '';
+                renderFormulas();
+                alert('Képlet sikeresen mentve!');
+            } else {
+                alert('Kérlek add meg a képlet nevét és formuláját!');
+            }
+        }
+
+        function deleteFormula(index) {
+            if (currentUser.role === 'admin' || currentUser.role === 'moderator') {
+                formulas.splice(index, 1);
+                renderFormulas();
+            } else {
+                alert('Nincs jogosultságod képlet törléséhez!');
+            }
+        }
+
+        function useFormula(formula) {
+            display = formula;
+            updateDisplay();
+        }
+
+        function renderFormulas() {
+            const list = document.getElementById('formulasList');
+            list.innerHTML = '';
+
+            formulas.forEach(function (formula, index) {
+                const item = document.createElement('div');
+                item.className = 'formula-item';
+
+                let deleteBtn = '';
+                if (currentUser.role === 'admin' || currentUser.role === 'moderator') {
+                    deleteBtn = '<button class="btn-icon" onclick="deleteFormula(' + index + ')">🗑️</button>';
+                }
+
+                const descHtml = formula.description ? '<div class="formula-desc">' + formula.description + '</div>' : '';
+
+                item.innerHTML = '<div class="formula-header">' +
+                    '<span class="formula-name">' + formula.name + '</span>' +
+                    deleteBtn +
+                    '</div>' +
+                    '<div class="formula-code">' + formula.formula + '</div>' +
+                    descHtml +
+                    '<button class="btn btn-primary btn-small" onclick="useFormula(\'' + formula.formula + '\')">Használ</button>';
+
+                list.appendChild(item);
+            });
+        }
+
+        function toggleFormulas() {
+            const panel = document.getElementById('formulasPanel');
+            panel.classList.toggle('hidden');
+        }
+
+
+        // Keyboard support
+        document.addEventListener('keydown', function (e) {
+            if (document.getElementById('mainApp').classList.contains('hidden')) return;
+
+            if (e.key >= '0' && e.key <= '9') appendDisplay(e.key);
+            else if (e.key === '+') appendDisplay('+');
+            else if (e.key === '-') appendDisplay('-');
+            else if (e.key === '*') appendDisplay('*');
+            else if (e.key === '/') appendDisplay('/');
+            else if (e.key === 'Enter') calculate();
+            else if (e.key === 'Escape') clearDisplay();
+            else if (e.key === 'Backspace') deleteLast();
+            else if (e.key === '(') appendDisplay('(');
+            else if (e.key === ')') appendDisplay(')');
+            else if (e.key === '.') appendDisplay('.');
+        });
+    </script>
+</body>
+
+</html>

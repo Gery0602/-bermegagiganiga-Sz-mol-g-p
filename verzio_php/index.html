@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/main_style.css">
+    <script src="./script/calc.js"></script>
     <title>-bermegagiganiga-Sz-mol-g-p</title>
 </head>
 
@@ -42,70 +43,4 @@
 
 
 </body>
-<script>
-    let display = document.getElementById('display');
-    let currentInput = '0';
-    let shouldResetDisplay = false;
-
-    function updateDisplay() {
-        display.textContent = currentInput;
-    }
-
-    function appendNumber(num) {
-        if (shouldResetDisplay) {
-            currentInput = num;
-            shouldResetDisplay = false;
-        } else {
-            if (currentInput === '0' && num !== '.') {
-                currentInput = num;
-            } else {
-                if (num === '.' && currentInput.includes('.')) {
-                    return;
-                }
-                currentInput += num;
-            }
-        }
-        updateDisplay();
-    }
-
-    function appendOperator(op) {
-        const lastChar = currentInput[currentInput.length - 1];
-        if (['+', '-', '*', '/'].includes(lastChar)) {
-            currentInput = currentInput.slice(0, -1) + op;
-        } else {
-            currentInput += op;
-        }
-        shouldResetDisplay = false;
-        updateDisplay();
-    }
-
-    function clearDisplay() {
-        currentInput = '0';
-        shouldResetDisplay = false;
-        updateDisplay();
-    }
-
-    function deleteLast() {
-        if (currentInput.length > 1) {
-            currentInput = currentInput.slice(0, -1);
-        } else {
-            currentInput = '0';
-        }
-        updateDisplay();
-    }
-
-    function calculate() {
-        try {
-            const result = eval(currentInput);
-            currentInput = result.toString();
-            shouldResetDisplay = true;
-            updateDisplay();
-        } catch (error) {
-            currentInput = 'Error';
-            shouldResetDisplay = true;
-            updateDisplay();
-        }
-    }
-</script>
-
 </html>

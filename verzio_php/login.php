@@ -57,7 +57,7 @@
                     document.getElementById('errDiv').innerText = data.error;
                 }
                 else if(data.success) {
-                    window.location.href = "theCalculator.php";
+                    window.location.href = "theCalculator.html";
                 }
                 else if(data.msg){
                     document.getElementById('msgDiv').innerText = data.msg;
