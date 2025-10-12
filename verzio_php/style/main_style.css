@@ -1,0 +1,98 @@
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: right;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.login{
+    background: rgb(15, 32, 187);
+    color: #fff;
+    padding: 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 10px;
+    /*cursor: pointer;
+    transition: all 0.3s;*/
+    font-weight: 300;
+}
+
+.foDiv{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.calculator {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    width: 320px;
+}
+
+.display {
+    background: #222;
+    color: #fff;
+    font-size: 2.5em;
+    padding: 20px;
+    text-align: right;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    min-height: 80px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+#calcButton {
+    padding: 20px;
+    font-size: 1.5em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 600;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.number {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.operator {
+    background: #ff9500;
+    color: #fff;
+}
+
+.equals {
+    background: #34c759;
+    color: #fff;
+    grid-column: span 2;
+}
+
+.clear {
+    background: #ff3b30;
+    color: #fff;
+    grid-column: span 2;
+}
+
+.zero {
+    grid-column: span 2;
+}

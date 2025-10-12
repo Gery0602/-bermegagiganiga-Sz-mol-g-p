@@ -35,3 +35,11 @@ Reszponzivitás: A webalkalmazás minden eszközön (desktop, tablet, mobil) jó
 | `user` | -képletek használata az adatbázisból |
 | `moderator` | -képletek szerkesztése az adatbázisban |
 | `admin` | -képletek hozzáadása és törlése az adtbázisól <br> -felhasználók kezelése |
+
+
+# 5. Rendszer működése
+## 5.1 Alap oldal
+Elehetőség az alap számológép eléréséhez és a bejelentkezésre/regisztrációra
+
+##5.2
+Az alap sz

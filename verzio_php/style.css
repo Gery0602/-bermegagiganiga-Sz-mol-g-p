@@ -1,0 +1,20 @@
+body{
+    padding: 50px;
+    background-color: white;
+}
+
+.head{
+    text-align: center;
+}
+
+.container{
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 50px;
+    box-shadow: black 0px 7px 29px 0px;
+    border-radius: 16px;
+}
+
+.form-group{
+    margin-bottom: 30px;
+}
