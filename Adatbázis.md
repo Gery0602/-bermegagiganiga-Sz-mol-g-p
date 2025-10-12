@@ -39,7 +39,7 @@ CREATE TABLE calculations (
 );
 
 
-INSERT INTO roles (role_name) VALUES ('admin'), ('moderator'), ('user');
+INSERT INTO roles (role_name) VALUES ('admin'), ('moderator'), ('user'), ('guest');
 
 
 INSERT INTO users (username, password, role_id) 
