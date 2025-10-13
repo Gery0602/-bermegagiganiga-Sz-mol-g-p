@@ -1,198 +1,217 @@
 <!DOCTYPE html>
 <html lang="hu">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tudományos Számológép</title>
-    <link rel="stylesheet" href="./style/style.css">
-</head>
-<body>
-    <!-- Login/Register Screen -->
-    <div id="authScreen" class="login-container">
-        <div class="login-header">
-            <h1>Számológép</h1>
-        </div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tudományos Számológép</title>
+        <link rel="stylesheet" href="./style/style.css">
+    </head>
+    <body>
+        <!-- Login/Register Screen -->
+        <div id="authScreen" class="login-container">
+            <div class="login-header">
+                <h1>🧮 Számológép</h1>
+            </div>
 
-        
-        <!-- Login Form -->
-        <div id="loginForm">
-            <div class="form-group">
-                <label>Felhasználónév</label>
-                <input type="text" id="loginUsername" placeholder="Felhasználónév">
+            <!-- Login Form -->
+            <div id="loginForm">
+                <div class="form-group">
+                    <label>Felhasználónév</label>
+                    <input type="text" id="loginUsername"
+                        placeholder="Felhasználónév">
+                </div>
+                <div class="form-group">
+                    <label>Jelszó</label>
+                    <input type="password" id="loginPassword"
+                        placeholder="Jelszó">
+                </div>
+                <button class="btn btn-primary"
+                    style="width: 100%; padding: 12px;"
+                    onclick="login()">Bejelentkezés</button>
+                <div class="login-toggle" onclick="toggleAuthForm()">Nincs
+                    fiókod? Regisztrálj!</div>
             </div>
-            <div class="form-group">
-                <label>Jelszó</label>
-                <input type="password" id="loginPassword" placeholder="Jelszó">
-            </div>
-            <button class="btn btn-primary" style="width: 100%; padding: 12px;" onclick="login()">Bejelentkezés</button>
-            <div class="login-toggle" onclick="toggleAuthForm()">Nincs fiókod? Regisztrálj!</div>
-        </div>
 
-        <!-- Register Form -->
-        <div id="registerForm" class="hidden">
-            <div class="form-group">
-                <label>Felhasználónév</label>
-                <input type="text" id="regUsername" placeholder="Felhasználónév">
-            </div>
-            <div class="form-group">
-                <label>Jelszó</label>
-                <input type="password" id="regPassword" placeholder="Jelszó">
-            </div>
-            <div class="form-group">
-                <label>Jelszó megerősítés</label>
-                <input type="password" id="regPasswordConfirm" placeholder="Jelszó újra">
-            </div>
-            <div class="form-group">
-                <label>Teljes név</label>
-                <input type="text" id="regFullName" placeholder="Teljes név">
-            </div>
-            <button class="btn btn-success" style="width: 100%; padding: 12px;" onclick="register()">Regisztráció</button>
-            <div class="login-toggle" onclick="toggleAuthForm()">Van már fiókod? Jelentkezz be!</div>
-        </div>
-    </div>
-
-    <!-- Main Application -->
-    <div id="mainApp" class="container hidden">
-        <div class="header">
-            <div>
-                <h1>Tudományos Számológép</h1>
-                <div class="user-info" id="userInfo"></div>
-            </div>
-            <div class="btn-group">
-                <button class="btn btn-success" onclick="toggleFormulas()">Képletek</button>
-                <button class="btn btn-warning" onclick="toggleAdmin()" id="adminBtn" style="display: none;">Admin</button>
-                <button class="btn btn-danger" onclick="logout()">Kijelentkezés</button>
+            <!-- Register Form -->
+            <div id="registerForm" class="hidden">
+                <div class="form-group">
+                    <label>Felhasználónév</label>
+                    <input type="text" id="regUsername"
+                        placeholder="Felhasználónév">
+                </div>
+                <div class="form-group">
+                    <label>Jelszó</label>
+                    <input type="password" id="regPassword"
+                        placeholder="Jelszó">
+                </div>
+                <div class="form-group">
+                    <label>Jelszó megerősítés</label>
+                    <input type="password" id="regPasswordConfirm"
+                        placeholder="Jelszó újra">
+                </div>
+                <div class="form-group">
+                    <label>Teljes név</label>
+                    <input type="text" id="regFullName"
+                        placeholder="Teljes név">
+                </div>
+                <button class="btn btn-success"
+                    style="width: 100%; padding: 12px;"
+                    onclick="register()">Regisztráció</button>
+                <div class="login-toggle" onclick="toggleAuthForm()">Van már
+                    fiókod? Jelentkezz be!</div>
             </div>
         </div>
 
-        <div class="main-content">
-            <!-- Calculator -->
-            <div class="calculator">
-                <div class="display">
-                    <div class="display-memory" id="memory"></div>
-                    <div class="display-main" id="display">0</div>
+        <!-- Main Application -->
+        <div id="mainApp" class="container hidden">
+            <div class="header">
+                <div>
+                    <h1>🧮 Tudományos Számológép</h1>
+                    <div class="user-info" id="userInfo"></div>
                 </div>
-
-                <!-- Scientific Buttons -->
-                <div class="buttons">
-                    <button class="calc-btn btn-function" onclick="applyFunction('sin')">sin</button>
-                    <button class="calc-btn btn-function" onclick="applyFunction('cos')">cos</button>
-                    <button class="calc-btn btn-function" onclick="applyFunction('tan')">tan</button>
-                    <button class="calc-btn btn-function" onclick="applyFunction('log')">log</button>
-                    <button class="calc-btn btn-special" onclick="appendDisplay('PI')">π</button>
-                    
-                    <button class="calc-btn btn-special" onclick="appendDisplay('^2')">x²</button>
-                    <button class="calc-btn btn-special" onclick="appendDisplay('^')">xⁿ</button>
-                    <button class="calc-btn btn-function" onclick="applyFunction('sqrt')">√</button>
-                    <button class="calc-btn btn-special" onclick="appendDisplay('!')">n!</button>
-                    <button class="calc-btn btn-number" onclick="appendDisplay('.')">.</button>
-                </div>
-
-                <!-- Main Buttons -->
-                <div class="buttons-main">
-                    <button class="calc-btn btn-clear" onclick="clearDisplay()">C</button>
-                    <button class="calc-btn btn-clear" onclick="deleteLast()">←</button>
-                    <button class="calc-btn btn-special" onclick="appendDisplay('%')">%</button>
-                    <button class="calc-btn btn-operator" onclick="appendDisplay('/')">÷</button>
-
-                    <button class="calc-btn btn-number" onclick="appendDisplay('7')">7</button>
-                    <button class="calc-btn btn-number" onclick="appendDisplay('8')">8</button>
-                    <button class="calc-btn btn-number" onclick="appendDisplay('9')">9</button>
-                    <button class="calc-btn btn-operator" onclick="appendDisplay('*')">×</button>
-
-                    <button class="calc-btn btn-number" onclick="appendDisplay('4')">4</button>
-                    <button class="calc-btn btn-number" onclick="appendDisplay('5')">5</button>
-                    <button class="calc-btn btn-number" onclick="appendDisplay('6')">6</button>
-                    <button class="calc-btn btn-operator" onclick="appendDisplay('-')">−</button>
-
-                    <button class="calc-btn btn-number" onclick="appendDisplay('1')">1</button>
-                    <button class="calc-btn btn-number" onclick="appendDisplay('2')">2</button>
-                    <button class="calc-btn btn-number" onclick="appendDisplay('3')">3</button>
-                    <button class="calc-btn btn-operator" onclick="appendDisplay('+')">+</button>
-
-                    <button class="calc-btn btn-special" onclick="appendDisplay('(')">(</button>
-                    <button class="calc-btn btn-number" onclick="appendDisplay('0')">0</button>
-                    <button class="calc-btn btn-special" onclick="appendDisplay(')')">)</button>
-                    <button class="calc-btn btn-equals" onclick="calculate()">=</button>
+                <div class="btn-group">
+                    <button class="btn btn-success"
+                        onclick="toggleFormulas()">📝 Képletek</button>
+                    <button class="btn btn-warning" onclick="toggleAdmin()"
+                        id="adminBtn" style="display: none;">⚙️ Admin</button>
+                    <button class="btn btn-danger"
+                        onclick="logout()">Kijelentkezés</button>
                 </div>
             </div>
 
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <!-- Admin Panel -->
-                <div id="adminPanel" class="panel hidden">
-                    <h2>Adminisztráció</h2>
-                    <div class="tab-buttons">
-                        <button class="tab-btn active" onclick="switchAdminTab('users')">Felhasználók</button>
-                        <button class="tab-btn" onclick="switchAdminTab('formulas')">Képletek</button>
-                    </div>
-                    
-                    <!-- Users Management -->
-                    <div id="adminUsers" class="scroll-panel"></div>
-                    
-                    <!-- Formulas Management -->
-                    <div id="adminFormulas" class="scroll-panel hidden"></div>
-                </div>
-
-                <!-- Formulas Panel -->
-                <div id="formulasPanel" class="panel hidden">
-                    <h2>Képletek</h2>
-                    
-                    <div id="newFormulaForm" class="new-formula-form hidden">
-                        <h3>Új képlet hozzáadása</h3>
-                        <input type="text" id="formulaName" placeholder="Képlet neve">
-                        <input type="text" id="formulaCode" placeholder="Képlet (pl: PI*r^2)">
-                        <input type="text" id="formulaDesc" placeholder="Leírás (opcionális)">
-                        <button class="btn btn-success" style="width: 100%;" onclick="saveFormula()">Mentés</button>
+            <div class="main-content">
+                <!-- Calculator -->
+                <div class="calculator">
+                    <div class="display">
+                        <div class="display-memory" id="memory"></div>
+                        <div class="display-main" id="display">0</div>
                     </div>
 
-                    <div id="formulasList" class="scroll-panel"></div>
+                    <!-- Scientific Buttons -->
+                    <div class="buttons">
+                        <button class="calc-btn btn-function"
+                            onclick="applyFunction('sin')">sin</button>
+                        <button class="calc-btn btn-function"
+                            onclick="applyFunction('cos')">cos</button>
+                        <button class="calc-btn btn-function"
+                            onclick="applyFunction('tan')">tan</button>
+                        <button class="calc-btn btn-function"
+                            onclick="applyFunction('log')">log</button>
+                        <button class="calc-btn btn-special"
+                            onclick="appendDisplay('PI')">π</button>
+
+                        <button class="calc-btn btn-special"
+                            onclick="appendDisplay('^2')">x²</button>
+                        <button class="calc-btn btn-special"
+                            onclick="appendDisplay('^')">xⁿ</button>
+                        <button class="calc-btn btn-function"
+                            onclick="applyFunction('sqrt')">√</button>
+                        <button class="calc-btn btn-special"
+                            onclick="appendDisplay('!')">n!</button>
+                        <button class="calc-btn btn-number"
+                            onclick="appendDisplay('.')">.</button>
+                    </div>
+
+                    <!-- Main Buttons -->
+                    <div class="buttons-main">
+                        <button class="calc-btn btn-clear"
+                            onclick="clearDisplay()">C</button>
+                        <button class="calc-btn btn-clear"
+                            onclick="deleteLast()">←</button>
+                        <button class="calc-btn btn-special"
+                            onclick="appendDisplay('%')">%</button>
+                        <button class="calc-btn btn-operator"
+                            onclick="appendDisplay('/')">÷</button>
+
+                        <button class="calc-btn btn-number"
+                            onclick="appendDisplay('7')">7</button>
+                        <button class="calc-btn btn-number"
+                            onclick="appendDisplay('8')">8</button>
+                        <button class="calc-btn btn-number"
+                            onclick="appendDisplay('9')">9</button>
+                        <button class="calc-btn btn-operator"
+                            onclick="appendDisplay('*')">×</button>
+
+                        <button class="calc-btn btn-number"
+                            onclick="appendDisplay('4')">4</button>
+                        <button class="calc-btn btn-number"
+                            onclick="appendDisplay('5')">5</button>
+                        <button class="calc-btn btn-number"
+                            onclick="appendDisplay('6')">6</button>
+                        <button class="calc-btn btn-operator"
+                            onclick="appendDisplay('-')">−</button>
+
+                        <button class="calc-btn btn-number"
+                            onclick="appendDisplay('1')">1</button>
+                        <button class="calc-btn btn-number"
+                            onclick="appendDisplay('2')">2</button>
+                        <button class="calc-btn btn-number"
+                            onclick="appendDisplay('3')">3</button>
+                        <button class="calc-btn btn-operator"
+                            onclick="appendDisplay('+')">+</button>
+
+                        <button class="calc-btn btn-special"
+                            onclick="appendDisplay('(')">(</button>
+                        <button class="calc-btn btn-number"
+                            onclick="appendDisplay('0')">0</button>
+                        <button class="calc-btn btn-special"
+                            onclick="appendDisplay(')')">)</button>
+                        <button class="calc-btn btn-equals"
+                            onclick="calculate()">=</button>
+                    </div>
                 </div>
 
-                
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <!-- Admin Panel -->
+                    <div id="adminPanel" class="panel hidden">
+                        <h2>⚙️ Adminisztráció</h2>
+                        <div class="tab-buttons">
+                            <button class="tab-btn active"
+                                onclick="switchAdminTab('users')">Felhasználók</button>
+                        </div>
+
+                        <!-- Users Management -->
+                        <div id="adminUsers" class="scroll-panel"></div>
+
+                        <!-- Formulas Management -->
+                        <div id="adminFormulas"
+                            class="scroll-panel hidden"></div>
+                    </div>
+
+                    <!-- Formulas Panel -->
+                    <div id="formulasPanel" class="panel hidden">
+                        <h2>📝 Képletek</h2>
+
+                        <div id="newFormulaForm"
+                            class="new-formula-form hidden">
+                            <h3>Új képlet hozzáadása</h3>
+                            <input type="text" id="formulaName"
+                                placeholder="Képlet neve">
+                            <input type="text" id="formulaCode"
+                                placeholder="Képlet (pl: PI*r^2)">
+                            <input type="text" id="formulaDesc"
+                                placeholder="Leírás (opcionális)">
+                            <button class="btn btn-success" style="width: 100%;"
+                                onclick="saveFormula()">Mentés</button>
+                        </div>
+
+                        <div id="formulasList" class="scroll-panel"></div>
+                    </div>
+
+                </div>
             </div>
         </div>
-    </div>
 
-    <script>
-        // Database simulation
-        const DB = {
-            users: {},
-            formulas: [],
-            history: {}
-        };
+        <script>
 
-        // Initialize default data
-        function initDB() {
-            DB.users = {
-                'admin': {
-                    password: 'admin123',
-                    role: 'admin',
-                    name: 'Adminisztrátor',
-                    createdAt: new Date().toISOString()
-                }
-            };
 
-            DB.formulas = [
-                { id: 1, name: 'Kör kerülete', formula: '2*PI*r', description: 'r = sugár', createdBy: 'admin' },
-                { id: 2, name: 'Kör területe', formula: 'PI*r^2', description: 'r = sugár', createdBy: 'admin' },
-                { id: 3, name: 'Négyzet kerülete', formula: '4*a', description: 'a = oldal', createdBy: 'admin' },
-                { id: 4, name: 'Négyzet területe', formula: 'a^2', description: 'a = oldal', createdBy: 'admin' },
-                { id: 5, name: 'Téglalap területe', formula: 'a*b', description: 'a,b = oldalak', createdBy: 'admin' },
-                { id: 6, name: 'Háromszög területe', formula: '(a*m)/2', description: 'a = alap, m = magasság', createdBy: 'admin' },
-                { id: 7, name: 'Pitagorasz tétel', formula: 'sqrt(a^2+b^2)', description: 'a,b = befogók', createdBy: 'admin' },
-                { id: 8, name: 'Másodfokú egyenlet', formula: '(-b+sqrt(b^2-4*a*c))/(2*a)', description: 'ax²+bx+c=0', createdBy: 'admin' }
-            ];
-        }
 
         // Global state
         let currentUser = null;
         let display = '0';
         let memory = '';
         let nextFormulaId = 9;
-
-        // Initialize
-        initDB();
 
         // Auth functions
         function toggleAuthForm() {
@@ -215,23 +234,30 @@
                 alert('A jelszavak nem egyeznek!');
                 return;
             }
-
-            if (DB.users[username]) {
-                alert('Ez a felhasználónév már foglalt!');
-                return;
-            }
-
-            DB.users[username] = {
+            
+            const jsonData = JSON.stringify({
+                name: username,
                 password: password,
-                role: 'user',
-                name: fullName,
-                createdAt: new Date().toISOString()
-            };
+                fullname: fullName,
+                muvelet: "r"
+            });
+            fetch("users.php", {
+                method: "POST",
+                header: { "Content-Type": "application/json" },
+                body: jsonData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        
+                        alert('Sikeres regisztráció! Most bejelentkezhetsz.');
+                        toggleAuthForm();
+                    }
+                    else if (data.msg) {
+                        alert(data.msg);
+                    }
+                })
 
-            DB.history[username] = [];
-
-            alert('Sikeres regisztráció! Most bejelentkezhetsz.');
-            toggleAuthForm();
             
             document.getElementById('regUsername').value = '';
             document.getElementById('regPassword').value = '';
@@ -243,33 +269,36 @@
             const username = document.getElementById('loginUsername').value.trim();
             const password = document.getElementById('loginPassword').value;
             
-            const user = DB.users[username];
-            if (user && user.password === password) {
-                currentUser = { username, role: user.role, name: user.name };
+            const jsonData = JSON.stringify({
+                username : username,
+                password : password,
+                muvelet : "l"
+            });
+            fetch("users.php", {
+                method: "POST",
+                header: {"Content-Type" : "application/json"},
+                body: jsonData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.success) {
+                    document.getElementById('authScreen').classList.add('hidden');
+                    document.getElementById('mainApp').classList.remove('hidden');
+                    document.getElementById('userInfo').innerHTML = `${data.username} <span class="user-role role-${data.role}">${data.role}</span>`;
                 
-                if (!DB.history[username]) {
-                    DB.history[username] = [];
-                }
-                
-                document.getElementById('authScreen').classList.add('hidden');
-                document.getElementById('mainApp').classList.remove('hidden');
-                document.getElementById('userInfo').innerHTML = `${user.name} <span class="user-role role-${user.role}">${user.role}</span>`;
-                
-                if (user.role === 'admin' || user.role === 'moderator') {
+                    if (data.role === 'admin' || data.role === 'moderator') {
                     document.getElementById('newFormulaForm').classList.remove('hidden');
                 }
                 
-                if (user.role === 'admin') {
+                if (data.role === 'admin') {
                     document.getElementById('adminBtn').style.display = 'block';
                 }
-                
+                currentUser = { username: data.username, role: data.role };
                 updateDisplay();
                 renderFormulas();
-                renderHistory();
-            } else {
-                alert('Hibás felhasználónév vagy jelszó!');
-            }
-        }
+                }
+            })
+        }                
 
         function logout() {
             currentUser = null;
@@ -281,7 +310,7 @@
             document.getElementById('loginPassword').value = '';
             document.getElementById('adminBtn').style.display = 'none';
             document.getElementById('adminPanel').classList.add('hidden');
-            window.location.href = "index.html";
+            window.location.href = 'index.html';
         }
 
         // Display functions
@@ -353,112 +382,102 @@
                 time: new Date().toLocaleString('hu-HU')
             };
             
-            DB.history[currentUser.username].push(historyItem);
-            
             display = result.toString();
             updateDisplay();
-            renderHistory();
         }
 
         // Formula functions
         function saveFormula() {
-            if (currentUser.role !== 'admin' && currentUser.role !== 'moderator') {
-                alert('Nincs jogosultságod képlet létrehozásához!');
-                return;
-            }
-
+           
             const name = document.getElementById('formulaName').value.trim();
             const formula = document.getElementById('formulaCode').value.trim();
             const description = document.getElementById('formulaDesc').value.trim();
             
             if (name && formula) {
-                DB.formulas.push({
-                    id: nextFormulaId++,
-                    name,
-                    formula,
-                    description,
-                    createdBy: currentUser.username
+                const jsonData = JSON.stringify({
+                name : name,
+                formula : formula,
+                description : description,
+                muvelet : "newformula"
                 });
-                
-                document.getElementById('formulaName').value = '';
-                document.getElementById('formulaCode').value = '';
-                document.getElementById('formulaDesc').value = '';
-                renderFormulas();
-                renderAdminFormulas();
-                alert('Képlet sikeresen mentve!');
+                fetch("users.php", {
+                    method: "POST",
+                    header: {"Content-Type" : "application/json"},
+                    body: jsonData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('formulaName').value = '';
+                    document.getElementById('formulaCode').value = '';
+                    document.getElementById('formulaDesc').value = '';
+                    renderFormulas();
+                    
+                    alert('Képlet sikeresen mentve!');
+                })
             } else {
                 alert('Kérlek add meg a képlet nevét és formuláját!');
             }
         }
 
         function deleteFormula(id) {
-            if (currentUser.role !== 'admin' && currentUser.role !== 'moderator') {
-                alert('Nincs jogosultságod képlet törléséhez!');
-                return;
-            }
-
-            const index = DB.formulas.findIndex(f => f.id === id);
-            if (index !== -1) {
-                DB.formulas.splice(index, 1);
+        
+        fetch('users.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id : id , muvelet: "deleteformula" })
+        })
+            .then(res => res.json())
+            .then(data => {
                 renderFormulas();
-                renderAdminFormulas();
-            }
-        }
-
-        function editFormula(id) {
-            if (currentUser.role !== 'admin') {
-                alert('Csak az admin módosíthat képleteket!');
-                return;
-            }
-
-            const formula = DB.formulas.find(f => f.id === id);
-            if (formula) {
-                const newName = prompt('Új név:', formula.name);
-                const newFormula = prompt('Új képlet:', formula.formula);
-                const newDesc = prompt('Új leírás:', formula.description);
-
-                if (newName && newFormula) {
-                    formula.name = newName;
-                    formula.formula = newFormula;
-                    formula.description = newDesc || '';
-                    renderFormulas();
-                    renderAdminFormulas();
-                }
-            }
-        }
-
+                window.alert(data.success);
+            });
+    }
+            
         function useFormula(formula) {
             display = formula;
             updateDisplay();
         }
 
         function renderFormulas() {
+
             const list = document.getElementById('formulasList');
             list.innerHTML = '';
             
-            DB.formulas.forEach(formula => {
-                const item = document.createElement('div');
-                item.className = 'formula-item';
+            fetch('users.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ muvelet: "listformulas" })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.error) return alert(data.error);
+                    data.forEach(formula => {
+                    const item = document.createElement('div');
+                    item.className = 'formula-item';
+
+                    let deleteBtn = '';
+                    if (currentUser.role === 'admin' || currentUser.role === 'moderator') {
+                        deleteBtn = `<button class="btn-icon" onclick="deleteFormula(${formula.id})">🗑️</button>`;
+                    }
+
+                    const descHtml = formula.description ? `<div class="formula-desc">${formula.description}</div>` : '';
+
+                    item.innerHTML = `
+                        <div class="formula-header">
+                            <span class="formula-name">${formula.name}</span>
+                            ${deleteBtn}
+                        </div>
+                        <div class="formula-code">${formula.formula}</div>
+                        ${descHtml}
+                        <button class="btn btn-primary btn-small" onclick="useFormula('${formula.formula}')">Használ</button>
+                    `;
+                    
+                    list.appendChild(item);
+                });
+                });
+
+
                 
-                let deleteBtn = '';
-                if (currentUser.role === 'admin' || currentUser.role === 'moderator') {
-                    deleteBtn = `<button class="btn-icon" onclick="deleteFormula(${formula.id})">🗑️</button>`;
-                }
-                
-                const descHtml = formula.description ? `<div class="formula-desc">${formula.description}</div>` : '';
-                
-                item.innerHTML = `
-                    <div class="formula-header">
-                        <span class="formula-name">${formula.name}</span>
-                        ${deleteBtn}
-                    </div>
-                    <div class="formula-code">${formula.formula}</div>
-                    ${descHtml}
-                    <button class="btn btn-primary btn-small" onclick="useFormula('${formula.formula}')">Használ</button>
-                `;
-                
-                list.appendChild(item);
-            });
         }
 
         // Admin functions
@@ -467,7 +486,7 @@
             panel.classList.toggle('hidden');
             if (!panel.classList.contains('hidden')) {
                 renderAdminUsers();
-                renderAdminFormulas();
+                
             }
         }
 
@@ -488,117 +507,58 @@
             const container = document.getElementById('adminUsers');
             container.innerHTML = '';
             
-            Object.keys(DB.users).forEach(username => {
-                const user = DB.users[username];
+            fetch('users.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ muvelet: "listusers" })
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.error) return alert(data.error);
+                data.forEach(user => {
                 const item = document.createElement('div');
                 item.className = 'user-item';
-                
-                const roleClass = `role-${user.role}`;
                 const canModify = currentUser.role === 'admin';
                 
                 item.innerHTML = `
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                         <div>
-                            <strong>${user.name}</strong>
-                            <span class="user-role ${roleClass}">${user.role}</span>
+                            <strong>${user.full_name}</strong>
+                            <span class="user-role ${user.role_name}">${user.role_name}</span>
                         </div>
-                        ${canModify && username !== currentUser.username ? `<button class="btn-icon" onclick="deleteUser('${username}')">🗑️</button>` : ''}
+                        ${canModify && user !== currentUser.username ? `<button class="btn-icon" onclick="deleteUser('${user.id}')">🗑️</button>` : ''}
                     </div>
                     <div style="font-size: 12px; color: #6b7280;">
-                        <div>Felhasználónév: ${username}</div>
-                        <div>Létrehozva: ${new Date(user.createdAt).toLocaleString('hu-HU')}</div>
+                        <div>Felhasználónév: ${user.username}</div>
+                        
                     </div>
-                    ${canModify && username !== currentUser.username ? `
-                        <div style="margin-top: 10px;">
-                            <button class="btn btn-warning btn-small" onclick="changeUserRole('${username}')">Szerep módosítás</button>
-                            <button class="btn btn-primary btn-small" onclick="resetPassword('${username}')">Jelszó reset</button>
-                        </div>
-                    ` : ''}
+
                 `;
-                
                 container.appendChild(item);
+            });
             });
         }
 
-        function renderAdminFormulas() {
-            const container = document.getElementById('adminFormulas');
-            container.innerHTML = '';
-            
-            DB.formulas.forEach(formula => {
-                const item = document.createElement('div');
-                item.className = 'formula-item';
-                
-                item.innerHTML = `
-                    <div class="formula-header">
-                        <span class="formula-name">${formula.name}</span>
-                        <div>
-                            <button class="btn btn-primary btn-small" onclick="editFormula(${formula.id})">✏️</button>
-                            <button class="btn-icon" onclick="deleteFormula(${formula.id})">🗑️</button>
-                        </div>
-                    </div>
-                    <div class="formula-code">${formula.formula}</div>
-                    ${formula.description ? `<div class="formula-desc">${formula.description}</div>` : ''}
-                    <div style="font-size: 11px; color: #6b7280; margin-top: 5px;">Létrehozta: ${formula.createdBy}</div>
-                `;
-                
-                container.appendChild(item);
+        
+
+        function deleteUser(id) {
+            fetch('users.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id:id, muvelet: "deleteuser" })
+            })
+            .then(res => res.json())
+            .then(data => {
+                renderAdminUsers();
+                alert(data.success || data.error);
             });
-        }
-
-        function deleteUser(username) {
-            if (currentUser.role !== 'admin') {
-                alert('Csak az admin törölhet felhasználókat!');
-                return;
-            }
-
-            if (confirm(`Biztosan törölni akarod ${username} felhasználót?`)) {
-                delete DB.users[username];
-                delete DB.history[username];
-                renderAdminUsers();
-                alert('Felhasználó törölve!');
-            }
-        }
-
-        function changeUserRole(username) {
-            if (currentUser.role !== 'admin') {
-                alert('Csak az admin módosíthat szerepköröket!');
-                return;
-            }
-
-            const user = DB.users[username];
-            const newRole = prompt(`Új szerep (admin/moderator/user):`, user.role);
-            
-            if (newRole && ['admin', 'moderator', 'user'].includes(newRole)) {
-                user.role = newRole;
-                renderAdminUsers();
-                alert('Szerepkör módosítva!');
-            } else if (newRole) {
-                alert('Érvénytelen szerepkör!');
-            }
-        }
-
-        function resetPassword(username) {
-            if (currentUser.role !== 'admin') {
-                alert('Csak az admin módosíthat jelszavakat!');
-                return;
-            }
-
-            const newPassword = prompt(`Új jelszó ${username} számára:`);
-            
-            if (newPassword && newPassword.length >= 6) {
-                DB.users[username].password = newPassword;
-                alert('Jelszó módosítva!');
-            } else if (newPassword) {
-                alert('A jelszónak legalább 6 karakter hosszúnak kell lennie!');
-            }
         }
 
         function toggleFormulas() {
             document.getElementById('formulasPanel').classList.toggle('hidden');
         }
-      
-
-        // Keyboard support
+    
         document.addEventListener('keydown', e => {
             if (document.getElementById('mainApp').classList.contains('hidden')) return;
             
@@ -615,5 +575,5 @@
             else if (e.key === '.') appendDisplay('.');
         });
     </script>
-</body>
+    </body>
 </html>
