@@ -1,8 +1,8 @@
-1. Áttekintés
+## 1. Áttekintés
 A projekt ötlete egy  többfelhasználós tudományos számológép rendszert valósít meg. Az alkalmazás lehetővé teszi a felhasználók számára, hogy regisztrálás után hozzáférjenek a számológép funkciókhoz. A rendszer hierarchikus jogosultsági szintekkel rendelkezik: admin, moderátor és felhasználó. Az adatokat MySQL adatbázisban tároljuk. Az egész webalkalmazás React-Node.js és MySQL segítségével lesz létrehozva.
-2. Jelenlegi helyzet
+## 2. Jelenlegi helyzet
 Jelenleg a piacon elérhető online számológép alkalmazások többsége nem biztosít megfelelő felhasználói élményt és funkcionalitást. A legtöbb alapvető számítási műveletekre korlátozódik, nem rendelkezik felhasználókezeléssel, történet mentéssel vagy megosztási lehetőségekkel. Hiányzik egy olyan komplex rendszer, amely egyesíti a tudományos számológép funkcióit egy modern, biztonságos és felhasználóbarát felülettel, miközben lehetővé teszi a számítások tárolását és adminisztrációját.
-3. Vágyálom rendszer
+## 3. Vágyálom rendszer
 Az ideális rendszerben a felhasználók gyorsan és egyszerűen regisztrálhatnak, majd azonnal belemerülhetnek az alkalmazás élményébe. A kezelőfelület tiszta és intuitív, így a felhasználó könnyedén megtalálja a számára lényeges funkciókat.
 Felhasználói szerepkörök:
 Felhasználó (User):
@@ -44,8 +44,8 @@ Statisztikai számítások (átlag, medián, szórás)
 
 
 
-4. Funkcionális követelmények
-4.1 Felhasználókezelés
+## 4. Funkcionális követelmények
+## 4.1 Felhasználókezelés
 
 Regisztráció/Bejelentkezés
 
@@ -63,7 +63,7 @@ Jogosultság alapú funkció hozzáférés
 
 
 
-4.2 Számológép funkciók
+## 4.2 Számológép funkciók
 
 Számítások elvégzése
 
@@ -82,7 +82,7 @@ Számítások törlése
 
 
 
-4.3 Adminisztrációs funkciók
+## 4.3 Adminisztrációs funkciók
 
 Felhasználókezelés (Admin)
 
@@ -110,7 +110,7 @@ Biztonsági paraméterek
 
 
 
-4.4 Megosztás és együttműködés
+## 4.4 Megosztás és együttműködés
 
 Számítások megosztása
 
@@ -120,7 +120,7 @@ Megosztás visszavonása
 
 
 
-5. Fogalomtár
+## 5. Fogalomtár
 
 MySQL:
 Nyílt forráskódú relációs adatbázis-kezelő rendszer. Strukturált adatok tárolására és kezelésére szolgál.
@@ -132,7 +132,7 @@ Tudományos számológép:
 Olyan számológép, amely az alapvető aritmetikai műveleteken túl képes komplex matematikai függvények (trigonometrikus, logaritmikus, exponenciális) és műveletek elvégzésére.
 Számítási előzmények:
 A felhasználó által korábban elvégzett számítások listája, amely lehetővé teszi a korábbi eredmények megtekintését és újrafelhasználását.
-6. Rendszerre vonatkozó törvények, szabványok, ajánlások
+## 6. Rendszerre vonatkozó törvények, szabványok, ajánlások
 Törvények
 
 
@@ -154,30 +154,30 @@ MySQL (Adatbázis)
 XAMPP (Helyi fejlesztői környezet)
 
 
-7. Nem-funkcionális követelmények
-7.1 Teljesítmény
+## 7. Nem-funkcionális követelmények
+## 7.1 Teljesítmény
 
 Számítások eredményének megjelenítése 100ms alatt
 Oldal betöltési idő maximum 2 másodperc
 1000 egyidejű felhasználó kiszolgálása
 
-7.2 Biztonság
+## 7.2 Biztonság
 
 Adatbázis kapcsolat titkosítása
 
-7.3 Használhatóság
+## 7.3 Használhatóság
 
 Reszponzív design (mobil, tablet, desktop)
 Intuitív felhasználói felület
 Billentyűzet támogatás
 
 
-7.4 Karbantarthatóság
+## 7.4 Karbantarthatóság
 
 Részletes dokumentáció
 Verziókezelés (Git)
 
-8. Riportok (Interjúkérdések)
+## 8. Riportok (Interjúkérdések)
 Q: Milyen weboldalt képzelt el?
 A: Egy többfelhasználós tudományos számológép alkalmazást, amely egyesíti a modern számológép funkciókat egy biztonságos, felhasználóbarát környezetben. Az oldal funkciói:
 
@@ -200,7 +200,7 @@ Teljes felhasználókezelési rendszer
 Adminisztrációs és moderációs funkciók
 Professzionális tudományos műveletek
 
-9. Fejlesztési ütemterv (javasolt)
+## 9. Fejlesztési ütemterv (javasolt)
 1. Fázis: Tervezés (2 hét)
 
 Részletes rendszerterv elkészítése
