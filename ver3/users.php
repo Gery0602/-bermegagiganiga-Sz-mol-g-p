@@ -3,7 +3,7 @@ header("Content-Type: application/json");
 session_start();
 
 try {
-    $kapcsolat = new PDO("mysql:host=localhost;dbname=calculator_db", "root", "");
+    $kapcsolat = new PDO("mysql:host=localhost;dbname=calculator_app", "root", "");
     $kapcsolat->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch(PDOException $e) {
     echo json_encode(["error" => $e->getMessage()]);
@@ -17,8 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     switch ($muvelet) {
         case "r":
             $nev = $adatok['name'];
-            $email = $adatok['email'];
             $jelszo = md5($adatok['password']);
+            $full_name = $adatok['fullname'];
             $query = "SELECT * FROM users WHERE username = ?";
             $stmt = $kapcsolat->prepare($query);
             $stmt->execute([$nev]);
@@ -26,8 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 echo json_encode(["msg" => "A megadott névvel már van az adatbázisban rekord!"]);
                 exit();
             }
-            $stmt = $kapcsolat->prepare("INSERT INTO users (username, password, email) VALUES (?, ?, ?)");
-            $stmt->execute([$nev, $jelszo, $email]);
+            $stmt = $kapcsolat->prepare("INSERT INTO users (username, password, full_name) VALUES (?, ?, ?)");
+            $stmt->execute([$nev, $jelszo, $full_name]);
             echo json_encode(["success" => "Sikeres regisztráció!"]);
             exit();
 
@@ -38,44 +38,55 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $stmt->execute([$username, $jelszo]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($user) {
-                $_SESSION['user'] = $user;
-                echo json_encode(["success" => "Sikeres bejelentkezés"]);
-                exit();
+                
+                $stmt = $kapcsolat->prepare("SELECT * FROM roles WHERE id = ?");
+                $stmt->execute([$user['role_id']]);
+                $roles =$stmt->fetch(PDO::FETCH_ASSOC);
+                if ($roles) {
+                    $_SESSION['user'] = $user;
+                    echo json_encode(["success" => "Sikeres bejelentkezés", "role" => $roles['role_name'], "username" => $user['username']]);
+                    exit();
+                }
             } else {
                 echo json_encode(["msg" => "Hibás bejelentkezési adatok"]);
                 exit();
             }
 
-        case "list":
+        case "listusers":
             
-            $stmt = $kapcsolat->query("SELECT id, username, email FROM users");
+            $stmt = $kapcsolat->query("SELECT username, full_name, users.id, role_name FROM users, roles WHERE users.role_id = roles.id");
             echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
             exit();
-
-        case "delete": 
+        
+        case "listformulas":
+            $stmt = $kapcsolat->query("SELECT * FROM formulas");
+            echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+            exit();
+        case "newformula":
+            $name = $adatok['name'];
+            $formula = $adatok['formula'];
+            $description = $adatok['description'];
+            $stmt = $kapcsolat->prepare("INSERT INTO formulas (name, formula, description) VALUES(?, ?, ?)");
+            $stmt->execute([$name, $formula, $description]);
+            echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+            exit();
+        case "deleteuser": 
             
             $id = $adatok['id'];
             $stmt = $kapcsolat->prepare("DELETE FROM users WHERE id = ?");
             $stmt->execute([$id]);
             echo json_encode(["success" => "Felhasználó törölve"]);
             exit();
+        
 
-        case "edit": 
+        case "deleteformula": 
             
             $id = $adatok['id'];
-            $name = $adatok['name'];
-            $email = $adatok['email'];
-            $stmt = $kapcsolat->prepare("UPDATE users SET name=?, email=? WHERE id=?");
-            $stmt->execute([$name, $email, $id]);
-            echo json_encode(["success" => "Szerkesztés sikeres"]);
+            $stmt = $kapcsolat->prepare("DELETE FROM formulas WHERE id = ?");
+            $stmt->execute([$id]);
+            echo json_encode(["success" => "Képlet törölve"]);
             exit();
-
-          
-        case "profile": 
-            
-            echo json_encode($_SESSION['user']);
-            exit();
-            
+        
         default:
             echo json_encode(["error" => "Hibás művelet!"]);
             exit();
