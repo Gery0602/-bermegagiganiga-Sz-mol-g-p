@@ -10,8 +10,9 @@
     <!-- Login/Register Screen -->
     <div id="authScreen" class="login-container">
         <div class="login-header">
-            <h1>🧮 Számológép</h1>
+            <h1>Számológép</h1>
         </div>
+        
         
         <!-- Login Form -->
         <div id="loginForm">
@@ -54,12 +55,12 @@
     <div id="mainApp" class="container hidden">
         <div class="header">
             <div>
-                <h1>🧮 Tudományos Számológép</h1>
+                <h1>Tudományos Számológép</h1>
                 <div class="user-info" id="userInfo"></div>
             </div>
             <div class="btn-group">
-                <button class="btn btn-success" onclick="toggleFormulas()">📝 Képletek</button>
-                <button class="btn btn-warning" onclick="toggleAdmin()" id="adminBtn" style="display: none;">⚙️ Admin</button>
+                <button class="btn btn-success" onclick="toggleFormulas()">Képletek</button>
+                <button class="btn btn-warning" onclick="toggleAdmin()" id="adminBtn" style="display: none;">Admin</button>
                 <button class="btn btn-danger" onclick="logout()">Kijelentkezés</button>
             </div>
         </div>
@@ -120,7 +121,7 @@
             <div class="sidebar">
                 <!-- Admin Panel -->
                 <div id="adminPanel" class="panel hidden">
-                    <h2>⚙️ Adminisztráció</h2>
+                    <h2>Adminisztráció</h2>
                     <div class="tab-buttons">
                         <button class="tab-btn active" onclick="switchAdminTab('users')">Felhasználók</button>
                         <button class="tab-btn" onclick="switchAdminTab('formulas')">Képletek</button>
@@ -135,7 +136,7 @@
 
                 <!-- Formulas Panel -->
                 <div id="formulasPanel" class="panel hidden">
-                    <h2>📝 Képletek</h2>
+                    <h2>Képletek</h2>
                     
                     <div id="newFormulaForm" class="new-formula-form hidden">
                         <h3>Új képlet hozzáadása</h3>
@@ -148,11 +149,7 @@
                     <div id="formulasList" class="scroll-panel"></div>
                 </div>
 
-                <!-- History Panel -->
-                <div id="historyPanel" class="panel hidden">
-                    <h2>📊 Előzmények</h2>
-                    <div id="historyList" class="scroll-panel"></div>
-                </div>
+                
             </div>
         </div>
     </div>
@@ -284,6 +281,7 @@
             document.getElementById('loginPassword').value = '';
             document.getElementById('adminBtn').style.display = 'none';
             document.getElementById('adminPanel').classList.add('hidden');
+            window.location.href = "index.html";
         }
 
         // Display functions
@@ -598,10 +596,7 @@
         function toggleFormulas() {
             document.getElementById('formulasPanel').classList.toggle('hidden');
         }
-
-        function toggleHistory() {
-            document.getElementById('historyPanel').classList.toggle('hidden');
-        }
+      
 
         // Keyboard support
         document.addEventListener('keydown', e => {
