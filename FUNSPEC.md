@@ -39,3 +39,14 @@ Reszponzivitás: A webalkalmazás minden eszközön (desktop, tablet, mobil) jó
 
 # 5. Rendszer működése
 
+##5.1 Guest: 
+Egy nagyon egyszerű, alap számológépet használhat, és lehetősége van a regisztrációra és/vagy bejelentkezésre
+
+##5.2 User:
+Hozzáférése van a teljes számológéphez, és az adatbázisban tárolt képleteket is tudja használni
+
+##5.3 Moderátor:
+Ez előzőek mellett jogosult az adatbázisba képletek feltöltésére és törlésére
+
+##5.4 Adminisztrátor
+Minden előbbi mellett láthatja az összes regisztrált felhasználót, és lehetősége van törölni ezen profilokat
