@@ -33,8 +33,8 @@ Reszponzivitás: A webalkalmazás minden eszközön (desktop, tablet, mobil) jó
 | --- | --- |
 | `guest` | -a számológép használata képletek nélkül |
 | `user` | -Kibővített számológép használata <br> + képletek használata|
-| `moderator` | -képletek szerkesztése az adatbázisban |
-| `admin` | -képletek hozzáadása és törlése az adtbázisól <br> -felhasználók kezelése |
+| `moderator` | -képletek hozzáadása és törlése az adtbázisól |
+| `admin` | -képletek hozzáadása és törlése az adtbázisól <br> -felhasználók törlése |
 
 
 # 5. Rendszer működése
