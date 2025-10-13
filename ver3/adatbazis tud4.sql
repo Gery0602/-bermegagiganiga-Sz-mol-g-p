@@ -6,8 +6,9 @@ CREATE TABLE users (
     id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
-    full_name VARCHAR(100) NOT NULL
-);
+    full_name VARCHAR(100) NOT NULL,
+    role_id INT DEFAULT 3
+    );
 
 CREATE TABLE roles (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -21,8 +22,8 @@ CREATE TABLE formulas (
     description TEXT
 );
 
-INSERT INTO users (username, password, full_name, role) 
-VALUES ('admin', 'admin123', 'Adminisztrátor', 'admin');
+INSERT INTO users (username, password, full_name, role_id) 
+VALUES ('admin', 'admin123', 'Adminisztrátor', 1);
 
 
 INSERT INTO formulas (name, formula, description) VALUES
